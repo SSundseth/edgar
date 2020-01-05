@@ -1,9 +1,5 @@
-from urllib.parse import urlencode
-
 import requests
 import os
-from lxml import etree
-
 
 def download_file(file_url):
     download_folder = "C:/Users/stefan.sundseth/edgar/data/"

@@ -15,13 +15,24 @@ curl $URL > form.txt
 
 echo ""
 echo "Grepping 13F-HR from index"
-grep 13F-HR form.txt | awk '{print $NF}' > 13fAll.txt
+grep "13F-HR " form.txt | awk '{print $NF}' > 13fAll.txt
 CT=$(wc -l 13fAll.txt)
 echo "	$CT forms found"
 echo ""
 
 
 echo "Running python to download forms"
-python downloader.py 2>/dev/null
+python downloader.py
+echo ""
 
+
+echo "Running python to parse files"
+rm data.csv 2>/dev/null
+touch data.csv
+python parse.py
+CT=$(wc -l data.csv)
+echo "	$CT records created"
+echo ""
+
+rm form.txt 13fAll.txt
 echo "Completed successfully"
