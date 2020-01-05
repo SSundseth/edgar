@@ -24,8 +24,6 @@ def download_file(file_url):
 
 
 with open("13fAll.txt") as f:
-    lines = [line.rstrip('\n') for line in f]
-
-for line in lines:
-    print(f"Downloading file: {line}")
-    download_file(line)
+    for cnt, line in enumerate(f):
+        print(f"{cnt} Downloading file: {line}")
+        download_file(line.strip())

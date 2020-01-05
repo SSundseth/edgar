@@ -22,6 +22,6 @@ echo ""
 
 
 echo "Running python to download forms"
-python downloader.py
+python downloader.py 2>/dev/null
 
 echo "Completed successfully"
