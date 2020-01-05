@@ -29,7 +29,6 @@ def parse_file(file):
     if "informationTable" not in informationTableXml.strip().split('\n')[-1]:
         informationTableXml = informationTableXml.split('\n')[0]
 
-    print(informationTableXml)
     # Now we have the information xml in a string
     root = ET.fromstring(informationTableXml)
 
@@ -39,7 +38,9 @@ def parse_file(file):
     value = ""
     shrs_or_prn_amt = ""
     shrs_or_prn_amt_type = ""
+    put_call = ""
     investment_discretion = ""
+    other_manager = ""
     voting_authority_sole = ""
     voting_authority_shared = ""
     voting_authorit_none = ""
@@ -56,9 +57,13 @@ def parse_file(file):
                 value = child.text
             elif "investmentDiscretion" in child.tag:
                 investment_discretion = child.text
+            elif "otherManager" in child.tag:
+                other_manager = child.text
+            elif "putCall" in child.tag:
+                put_call = child.text
             elif "shrsOrPrnAmt" in child.tag:
                 for shrs in child:
-                    if "sshPrnamt" == shrs.tag:
+                    if "sshPrnamt" in shrs.tag and "Type" not in shrs.tag:
                         shrs_or_prn_amt = shrs.text
                     elif "sshPrnamtType" in shrs.tag:
                         shrs_or_prn_amt_type = shrs.text
@@ -78,7 +83,9 @@ def parse_file(file):
                 value+","+ \
                 shrs_or_prn_amt+","+ \
                 shrs_or_prn_amt_type+","+ \
+                put_call+","+ \
                 investment_discretion+","+ \
+                other_manager+","+ \
                 voting_authority_sole+","+ \
                 voting_authority_shared+","+ \
                 voting_authority_none+"\n"
