@@ -95,7 +95,8 @@ def parse_file(file):
 
 
 all_files = [f for f in listdir("data/") if isfile(join("data/", f))]
-for file in all_files:
-    print(f"Parsing {file}")
-    parse_file("data/"+file)
+size = len(all_files)
+for cnt, f in enumerate(all_files):
+    print(f"{cnt}/{size} Parsing {f}")
+    parse_file("data/"+f)
 
