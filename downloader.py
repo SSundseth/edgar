@@ -4,7 +4,7 @@ import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 def download_file(file_url):
-    download_folder = "C:/Users/stefan.sundseth/edgar/data/"
+    download_folder = "data/"
 
     base_url = "https://www.sec.gov/Archives/"
 
