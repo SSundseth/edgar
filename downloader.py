@@ -22,7 +22,6 @@ def download_file(file_url):
 
 
 with open("13fAll.txt") as f:
-    size = len(f)
     for cnt, line in enumerate(f):
-        print(f"{cnt}/{size} Downloading file: {line}")
+        print(f"{cnt} Downloading file: {line}")
         download_file(line.strip())
