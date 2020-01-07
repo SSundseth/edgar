@@ -23,6 +23,10 @@ echo ""
 
 echo "Running python to download forms"
 python downloader.py
+if [ $? -ne 0 ]; then
+	echo "Downloading failed"
+	exit 1
+fi
 echo ""
 
 
