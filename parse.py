@@ -43,7 +43,9 @@ def parse_file(file):
     other_manager = ""
     voting_authority_sole = ""
     voting_authority_shared = ""
-    voting_authorit_none = ""
+    voting_authority_none = ""
+
+    write_line = ""
 
     for infoTable in root:
         for child in infoTable:
@@ -76,7 +78,7 @@ def parse_file(file):
                     elif "None" in vote_auth.tag:
                         voting_authority_none = vote_auth.text
 
-        write_line = cik+","+ \
+        write_line += cik+","+ \
                 name_of_issuer+","+ \
                 title_of_class+","+ \
                 cusip+","+ \
@@ -90,8 +92,8 @@ def parse_file(file):
                 voting_authority_shared+","+ \
                 voting_authority_none+"\n"
 
-        with open("data.csv", "a") as write_file:
-            write_file.write(write_line)
+    with open("data.csv", "a") as write_file:
+        write_file.write(write_line)
 
 
 all_files = [f for f in listdir("data/") if isfile(join("data/", f))]
@@ -99,4 +101,3 @@ size = len(all_files)
 for cnt, f in enumerate(all_files):
     print(f"{cnt}/{size} Parsing {f}")
     parse_file("data/"+f)
-
