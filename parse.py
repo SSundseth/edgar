@@ -5,6 +5,10 @@ from os.path import isfile, join
 def parse_file(file):
     cik = file.split("/")[-1].split("-")[0]
 
+    with open("sp500List") as sp500:
+        sp500Cusips = [line.rstrip('\n') for line in sp500]
+
+
     # Find the informationTable section of the file
     with open(file) as f:
         line = f.readline()
@@ -78,19 +82,20 @@ def parse_file(file):
                     elif "None" in vote_auth.tag:
                         voting_authority_none = vote_auth.text
 
-        write_line += cik+","+ \
-                name_of_issuer+","+ \
-                title_of_class+","+ \
-                cusip+","+ \
-                value+","+ \
-                shrs_or_prn_amt+","+ \
-                shrs_or_prn_amt_type+","+ \
-                put_call+","+ \
-                investment_discretion+","+ \
-                other_manager+","+ \
-                voting_authority_sole+","+ \
-                voting_authority_shared+","+ \
-                voting_authority_none+"\n"
+        if "put" != put_call.lower() and cusip in sp500Cusips:
+            write_line += cik+","+ \
+                    name_of_issuer+","+ \
+                    title_of_class+","+ \
+                    cusip+","+ \
+                    value+","+ \
+                    shrs_or_prn_amt+","+ \
+                    shrs_or_prn_amt_type+","+ \
+                    put_call+","+ \
+                    investment_discretion+","+ \
+                    other_manager+","+ \
+                    voting_authority_sole+","+ \
+                    voting_authority_shared+","+ \
+                    voting_authority_none+"\n"
 
     with open("data.csv", "a") as write_file:
         write_file.write(write_line)
