@@ -84,18 +84,18 @@ def parse_file(file):
 
         if "put" != put_call.lower() and cusip in sp500Cusips:
             write_line += cik+","+ \
-                    name_of_issuer.replace(',','')+","+ \
-                    title_of_class+","+ \
-                    cusip+","+ \
-                    value+","+ \
-                    shrs_or_prn_amt+","+ \
-                    shrs_or_prn_amt_type+","+ \
-                    put_call+","+ \
-                    investment_discretion+","+ \
-                    other_manager.replace(',', ' ')+","+ \
-                    voting_authority_sole+","+ \
-                    voting_authority_shared+","+ \
-                    voting_authority_none+"\n"
+                    name_of_issuer.replace(',',' ').replace('\n', ' ')+","+ \
+                    title_of_class.replace(',', ' ').replace('\n', ' ')+","+ \
+                    cusip.replace(',',' ').replace('\n', ' ')+","+ \
+                    value.replace(',',' ').replace('\n', ' ')+","+ \
+                    shrs_or_prn_amt.replace(',',' ').replace('\n', ' ')+","+ \
+                    shrs_or_prn_amt_type.replace(',',' ').replace('\n', ' ')+","+ \
+                    put_call.replace(',',' ').replace('\n', ' ')+","+ \
+                    investment_discretion.replace(',',' ').replace('\n', ' ')+","+ \
+                    other_manager.replace(',', ' ').replace('\n', ' ')+","+ \
+                    voting_authority_sole.replace(',',' ').replace('\n', ' ')+","+ \
+                    voting_authority_shared.replace(',',' ').replace('\n', ' ')+","+ \
+                    voting_authority_none.replace(',',' ').replace('\n', ' ')+"\n"
 
     with open("data.csv", "a") as write_file:
         write_file.write(write_line)
