@@ -92,7 +92,7 @@ def parse_file(file):
                     shrs_or_prn_amt_type+","+ \
                     put_call+","+ \
                     investment_discretion+","+ \
-                    other_manager+","+ \
+                    other_manager.replace(',', ' ')+","+ \
                     voting_authority_sole+","+ \
                     voting_authority_shared+","+ \
                     voting_authority_none+"\n"
