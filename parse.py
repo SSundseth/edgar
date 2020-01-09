@@ -84,7 +84,7 @@ def parse_file(file):
 
         if "put" != put_call.lower() and cusip in sp500Cusips:
             write_line += cik+","+ \
-                    name_of_issuer+","+ \
+                    name_of_issuer.replace(',','')+","+ \
                     title_of_class+","+ \
                     cusip+","+ \
                     value+","+ \
