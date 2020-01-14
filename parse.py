@@ -8,10 +8,14 @@ def parse_file(file):
     with open("sp500List") as sp500:
         sp500Cusips = [line.rstrip('\n') for line in sp500]
 
+    isAddition = False
 
     # Find the informationTable section of the file
     with open(file) as f:
         line = f.readline()
+
+        if "amendmentType" in line.lower() and "RESTATEMENT" not in line.lower():
+            isAddition = True
 
         informationTableXml = ""
 
@@ -97,8 +101,12 @@ def parse_file(file):
                     voting_authority_shared.replace(',',' ').replace('\n', ' ')+","+ \
                     voting_authority_none.replace(',',' ').replace('\n', ' ')+"\n"
 
-    with open("data.csv", "a") as write_file:
-        write_file.write(write_line)
+    if isAddition:
+        with open("dataAddition.csv", "a") as write_file:
+            write_file.write(write_line)
+    else:
+        with open("data.csv", "a") as write_file:
+            write_file.write(write_line)
 
 
 all_files = [f for f in listdir("data/") if isfile(join("data/", f))]

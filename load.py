@@ -8,12 +8,15 @@ try:
                                          password='Ba5eba!!')
     cursor = connection.cursor()
     
+    cursor.execute("load data infile 'C:/ProgramData/MySQL/MySQL Server 5.7/Uploads/dataAddition.csv' into table raw_data FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n'")
+
     cursor.execute('truncate raw_data_daily')
     cursor.execute("load data infile 'C:/ProgramData/MySQL/MySQL Server 5.7/Uploads/data.csv' into table raw_data_daily FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n'")
 
     connection.commit()
 
     cursor.callproc('daily_reload')
+
 
     connection.commit()
 

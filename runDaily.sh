@@ -22,7 +22,7 @@ curl $URL > form.txt
 
 echo ""
 echo "Grepping 13F-HR from index"
-grep "13F-HR " form.txt | awk '{print $NF}' > 13fAll.txt
+grep "13F-HR" form.txt | awk '{print $NF}' > 13fAll.txt
 CT=$(wc -l 13fAll.txt)
 echo "	$CT forms found"
 echo ""
@@ -38,7 +38,7 @@ echo "Deleting all files in data folder in 5 seconds. CTRL-C to cancel"
 sleep 5
 rm -rf data/*
 rm data.csv 2>&1
-
+rm dataAddition.csv 2>&1
 
 
 echo "Running python to download forms"
@@ -61,6 +61,7 @@ echo ""
 
 echo "Running python to load and calculate"
 cp data.csv "/c/ProgramData/MySQL/MySQL Server 5.7/Uploads/"
+cp dataAddition.csv "/c/ProgramData/MySQL/MySQL Server 5.7/Uploads/"
 python load.py
 
 rm form.txt 13fAll.txt
