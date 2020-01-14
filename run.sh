@@ -14,6 +14,11 @@ echo "Getting index from $URL"
 curl $URL > form.txt
 
 echo ""
+echo "Deleting all files in data folder in 5 seconds. CTRL-C to cancel"
+sleep 5
+rm -rf data/*
+
+echo ""
 echo "Grepping 13F-HR from index"
 grep "13F-HR " form.txt | awk '{print $NF}' > 13fAll.txt
 CT=$(wc -l 13fAll.txt)
