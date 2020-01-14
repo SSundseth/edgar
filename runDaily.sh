@@ -1,14 +1,20 @@
 #!/bin/bash
 
-if [ $# -ne 3 ]; then
-	echo "Enter year, quarter, and date:"
-	echo "./runDaily.sh 2020 QTR1 20200105"
-	exit 1
+YEAR=$(date +%Y)
+DAY=$(date +%Y%m%d)
+DATE=$(date +%m%d)
+
+if [ $DATE -lt 331 ]; then
+	QTR="QTR1"
+elif [ $DATE -lt 630 ]; then
+	QTR="QTR2"
+elif [ $DATE -lt 930 ]; then
+	QTR="QTR3"
+else
+	QTR="QTR4"
 fi
 
-YEAR=$1
-QTR=$2
-DAY=$3
+
 URL="https://www.sec.gov/Archives/edgar/daily-index/$YEAR/$QTR/form.$DAY.idx"
 
 echo "Getting index from $URL"
