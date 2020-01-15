@@ -50,6 +50,7 @@ fi
 echo ""
 
 echo "Running python to parse files"
+touch data.csv dataAddition.csv
 python parse.py
 if [ $? -ne 0 ]; then
 	echo "Parsing failed"
