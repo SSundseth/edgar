@@ -4,7 +4,7 @@ from mysql.connector import Error
 try:
     connection = mysql.connector.connect(host='localhost',
                                          database='edgar',
-                                         user='pythonuser',
+                                         user='root',
                                          password='Ba5eba!!',
                                          connection_timeout=36000)
     cursor = connection.cursor()

@@ -20,7 +20,7 @@ rm -rf data/*
 
 echo ""
 echo "Grepping 13F-HR from index"
-grep "13F-HR " form.txt | awk '{print $NF}' > 13fAll.txt
+grep "13F-HR" form.txt | awk '{print $NF}' > 13fAll.txt
 CT=$(wc -l 13fAll.txt)
 echo "	$CT forms found"
 echo ""
