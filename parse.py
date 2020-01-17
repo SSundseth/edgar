@@ -6,7 +6,7 @@ def parse_file(file):
     cik = file.split("/")[-1].split("-")[0]
 
     with open("stockList") as stockList:
-        ourCusips = [line.rstrip('\n') for line in stockList]
+        ourCusips = [line.split(',')[1].rstrip('\n') for line in stockList]
 
     isAddition = False
 
