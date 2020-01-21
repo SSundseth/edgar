@@ -5,9 +5,6 @@ from os.path import isfile, join
 def parse_file(file):
     cik = file.split("/")[-1].split("-")[0]
 
-    with open("stockList") as stockList:
-        ourCusips = [line.split(',')[1].rstrip('\n') for line in stockList]
-
     isAddition = False
 
     # Find the informationTable section of the file
@@ -86,7 +83,7 @@ def parse_file(file):
                     elif "None" in vote_auth.tag:
                         voting_authority_none = vote_auth.text
 
-        if "put" != put_call.lower() and cusip in ourCusips:
+        if "put" != put_call.lower():
             write_line += cik+","+ \
                     name_of_issuer.replace(',',' ').replace('\n', ' ')+","+ \
                     title_of_class.replace(',', ' ').replace('\n', ' ')+","+ \

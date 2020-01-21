@@ -1,6 +1,8 @@
 import requests
 import pandas as pd
 from bs4 import BeautifulSoup
+import urllib3
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
 def string_to_int(string):
@@ -11,7 +13,7 @@ def string_to_int(string):
      # convert number to float, multiply by multiplier, then make int
     return int(float(string[:-1]) * mult)
 
-with open("tickerList") as tickerList:
+with open("stockList") as tickerList:
     tickers = [line.rstrip('\n').split(',') for line in tickerList]
 
 
@@ -23,7 +25,7 @@ for line in tickers:
 
     url=f"https://www.sharesoutstandinghistory.com/{ticker.lower()}"
     print(url)
-    response = requests.get(url)
+    response = requests.get(url, verify=False)
     if response.status_code == 200:
         soup = BeautifulSoup(response.text, 'lxml')
         table = soup.findAll("td", {"class":"tstyle"})
