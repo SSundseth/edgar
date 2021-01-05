@@ -1,18 +1,14 @@
 #!/bin/bash
 
-YEAR=$(date +%Y)
-DAY=$(date +%Y%m%d)
-DATE=$(date +%m%d)
-
-if [ $DATE -lt 331 ]; then
-	QTR="QTR1"
-elif [ $DATE -lt 630 ]; then
-	QTR="QTR2"
-elif [ $DATE -lt 930 ]; then
-	QTR="QTR3"
-else
-	QTR="QTR4"
+if [ $# -lt 3 ]; then
+	echo "Run with YEAR QTR DAY like: "
+	echo "./runManual.sh 2021 QTR1 20210105"
+	exit 1;
 fi
+
+YEAR=$1
+QTR=$2
+DAY=$3
 
 
 URL="https://www.sec.gov/Archives/edgar/daily-index/$YEAR/$QTR/form.$DAY.idx"
@@ -35,7 +31,6 @@ fi
 
 echo ""
 echo "Deleting all files in data folder in 5 seconds. CTRL-C to cancel"
-sleep 5
 rm -rf data/*
 rm data.csv 2>&1
 rm dataAddition.csv 2>&1

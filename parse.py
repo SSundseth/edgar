@@ -110,4 +110,8 @@ all_files = [f for f in listdir("data/") if isfile(join("data/", f))]
 size = len(all_files)
 for cnt, f in enumerate(all_files):
     print(f"{cnt}/{size} Parsing {f}")
-    parse_file("data/"+f)
+    try:
+        parse_file("data/"+f)
+    except:
+        print(f"Error occurred Parsing {f}")
+
